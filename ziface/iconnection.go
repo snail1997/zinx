@@ -8,13 +8,14 @@ type IConnection interface {
 	Start()
 	// Stop 停止连接，结束当前连接状态
 	Stop()
-	// GetConnID 从当前连接获取原始的socket TCPConn GetTCPConnection() *net.TCPConn //获取当前连接ID
+	// GetConnID 获取当前连接ID
 	GetConnID() uint32
 	// RemoteAddr 获取远程客户端的TCP状态
 	RemoteAddr() net.Addr
-	// Send 发送数据,将数据发送给远程的客户端
+	// GetTCPConnection 从当前连接获取原始的socket TCPConn
 	GetTCPConnection() *net.TCPConn
-	//Send(data []byte) error
+	// SendMsg 直接将Message数据发送数据给远程的TCP客户端
+	SendMsg(msgId uint32, data []byte) error
 }
 
 // HandFunc 定义一个统⼀处理链接业务的接⼝
